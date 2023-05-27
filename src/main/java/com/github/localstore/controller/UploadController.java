@@ -1,12 +1,15 @@
 package com.github.localstore.controller;
 
 import com.github.localstore.dto.FileDto;
+import com.github.localstore.dto.PathDto;
 import com.github.localstore.model.FileModel;
-import com.github.localstore.model.PathModel;
 import com.github.localstore.service.FileService;
 import com.github.localstore.utils.mapper.FileModelDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -28,8 +31,8 @@ public class UploadController {
     private FileModelDtoMapper fileModelDtoMapper;
 
     @GetMapping(path = "/")
-    Object[] getFilesInDir(@RequestBody PathModel pathModel) {
-        return Arrays.stream(Objects.requireNonNull(new File(pathModel.getPath()).listFiles())).toArray();
+    Object[] getFilesInDir(@RequestBody PathDto pathDto) {
+        return Arrays.stream(Objects.requireNonNull(new File(pathDto.getPath()).listFiles())).toArray();
     }
 
     @PostMapping(path = "/upload")

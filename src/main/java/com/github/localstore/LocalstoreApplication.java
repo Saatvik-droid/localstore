@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class LocalstoreApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(LocalstoreApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(LocalstoreApplication.class, args);
+    }
 
 }

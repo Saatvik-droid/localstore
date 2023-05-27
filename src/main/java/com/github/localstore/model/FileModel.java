@@ -12,6 +12,15 @@ public class FileModel {
     @Column
     private String savePath;
 
+    public FileModel() {
+    }
+
+    public FileModel(Long id, String fileName, String savePath) {
+        this.id = id;
+        this.fileName = fileName;
+        this.savePath = savePath;
+    }
+
     public Long getId() {
         return id;
     }
@@ -33,15 +42,6 @@ public class FileModel {
     }
 
     public void setSavePath(String savePath) {
-        this.savePath = savePath;
-    }
-
-    public FileModel() {
-    }
-
-    public FileModel(Long id, String fileName, String savePath) {
-        this.id = id;
-        this.fileName = fileName;
         this.savePath = savePath;
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface FileModelDtoMapper {
 
     FileModelDtoMapper INSTANCE = Mappers.getMapper(FileModelDtoMapper.class);
+
     @Mapping(target = "fileName", source = "file", qualifiedByName = "fileName")
     FileModel toFileModel(FileDto fileDto);
 

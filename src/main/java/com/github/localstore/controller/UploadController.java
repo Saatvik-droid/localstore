@@ -1,25 +1,18 @@
 package com.github.localstore.controller;
 
-import com.github.localstore.dto.FileDto;
+import com.github.localstore.dto.FileInputDto;
 import com.github.localstore.dto.PathDto;
-import com.github.localstore.model.FileModel;
+import com.github.localstore.dto.FileOutputDto;
 import com.github.localstore.service.FileService;
-import com.github.localstore.utils.mapper.FileModelDtoMapper;
+import com.github.localstore.utils.mapper.FileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Objects;
-
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 
 @RestController
@@ -28,19 +21,15 @@ public class UploadController {
     private FileService fileService;
 
     @Autowired
-    private FileModelDtoMapper fileModelDtoMapper;
+    private FileMapper fileMapper;
 
     @GetMapping(path = "/")
-    Object[] getFilesInDir(@RequestBody PathDto pathDto) {
-        return Arrays.stream(Objects.requireNonNull(new File(pathDto.getPath()).listFiles())).toArray();
+    File[] getFilesInDir(@RequestBody PathDto pathDto) {
+        return fileService.getFilesInDir(pathDto);
     }
 
     @PostMapping(path = "/upload")
-    FileModel uploadFile(FileDto fileDto) throws IOException {
-        MultipartFile file = fileDto.getFile();
-        String absoluteSavePath = new File(".").getCanonicalPath() + fileDto.getSavePath() + "/" + file.getOriginalFilename();
-        Files.copy(file.getInputStream(), Path.of(absoluteSavePath), REPLACE_EXISTING);
-        FileModel fileModel = fileModelDtoMapper.INSTANCE.toFileModel(fileDto);
-        return fileService.saveFile(fileModel);
+    FileOutputDto uploadFile(FileInputDto fileInputDto) throws IOException {
+        return fileService.saveFile(fileInputDto);
     }
-}
+}   

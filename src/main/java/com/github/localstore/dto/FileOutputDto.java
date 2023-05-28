@@ -1,32 +1,20 @@
-package com.github.localstore.model;
+package com.github.localstore.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-public class FileModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column
+public class FileOutputDto {
     private String fileName;
-    @Column
     private String savePath;
 
-    public FileModel() {
+    public FileOutputDto() {
     }
 
-    public FileModel(Long id, String fileName, String savePath) {
-        this.id = id;
+    public FileOutputDto(String fileName, String savePath) {
         this.fileName = fileName;
         this.savePath = savePath;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public String toString() {
+        return "FileOutputDto{" + "fileName='" + fileName + '\'' + ", savePath='" + savePath + '\'' + '}';
     }
 
     public String getFileName() {

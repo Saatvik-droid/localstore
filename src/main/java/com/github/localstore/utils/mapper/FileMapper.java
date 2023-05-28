@@ -1,7 +1,7 @@
 package com.github.localstore.utils.mapper;
 
-import com.github.localstore.dto.FileDto;
-import com.github.localstore.model.FileModel;
+import com.github.localstore.dto.FileInputDto;
+import com.github.localstore.dto.FileOutputDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -9,12 +9,12 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.web.multipart.MultipartFile;
 
 @Mapper(componentModel = "spring")
-public interface FileModelDtoMapper {
+public interface FileMapper {
 
-    FileModelDtoMapper INSTANCE = Mappers.getMapper(FileModelDtoMapper.class);
+    FileMapper INSTANCE = Mappers.getMapper(FileMapper.class);
 
     @Mapping(target = "fileName", source = "file", qualifiedByName = "fileName")
-    FileModel toFileModel(FileDto fileDto);
+    FileOutputDto toFileModel(FileInputDto fileInputDto);
 
 
     @Named("fileName")

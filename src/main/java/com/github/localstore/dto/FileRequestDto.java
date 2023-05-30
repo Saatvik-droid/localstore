@@ -2,16 +2,16 @@ package com.github.localstore.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class FileInputDto {
+public class FileRequestDto {
 
     private MultipartFile file;
 
     private String savePath;
 
-    public FileInputDto() {
+    public FileRequestDto() {
     }
 
-    public FileInputDto(MultipartFile file, String savePath) {
+    public FileRequestDto(MultipartFile file, String savePath) {
         this.file = file;
         this.savePath = savePath;
     }

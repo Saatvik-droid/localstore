@@ -1,4 +1,4 @@
-package com.github.localstore.utils.mapper;
+package com.github.localstore.utils.mappers;
 
 import com.github.localstore.dto.UserDto;
 import com.github.localstore.model.UserModel;

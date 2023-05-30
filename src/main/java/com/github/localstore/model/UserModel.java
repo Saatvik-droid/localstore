@@ -1,6 +1,7 @@
 package com.github.localstore.model;
 
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 
 @Entity
 public class UserModel {

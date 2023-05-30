@@ -1,15 +1,15 @@
 package com.github.localstore.service;
 
-import com.github.localstore.dto.FileInputDto;
-import com.github.localstore.dto.FileOutputDto;
-import com.github.localstore.dto.PathDto;
+import com.github.localstore.dto.FileRequestDto;
+import com.github.localstore.dto.FileResponseDto;
 
-import java.io.File;
 import java.io.IOException;
 
 public interface FileService {
 
-    File[] getFilesInDir(PathDto pathDto);
+    FileResponseDto[] getFilesInDir(String path) throws IOException;
 
-    FileOutputDto saveFile(FileInputDto fileInputDto) throws IOException;
+    FileResponseDto[] getFilesInParentDir(String path) throws IOException;
+
+    FileResponseDto saveFile(FileRequestDto fileRequestDto) throws IOException;
 }
